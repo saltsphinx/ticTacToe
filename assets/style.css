@@ -3,7 +3,7 @@
   text-align: center;
 }
 
-h2 {
+h2, p {
   margin: 0;
 }
 
@@ -39,7 +39,8 @@ a:visited {
 }
 
 .grid-item > p {
-  height: 100%;
+  height: 2rem;
+  font-size: 2rem;
 }
 
 .container {
@@ -55,12 +56,25 @@ a:visited {
 
 .display-container {
   display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 
+.display-container > div,
 .wins {
-  display: flex;
-  gap: 1rem;
+  width: 100%;
+}
+
+.wins {
+  border: 0.2rem solid #ddd;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  width: 100%;
+}
+
+.wins > p:first-child {
+  background-color: #ddc;
+  border-bottom: 0.2rem solid #ddd;
 }
 
 .hidden {

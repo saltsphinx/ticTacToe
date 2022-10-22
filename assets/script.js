@@ -12,12 +12,14 @@ const gameModule = (function (){
 
   const startGame = function() {
     addClickEvents();
+    interfaceHandler.updateDisplay();
   }
 
   const resetGame = function() {
     addClickEvents();
     board.resetBoard();
     interfaceHandler.toggleReset();
+    interfaceHandler.updateDisplay();
   }
   
   const interfaceHandler = (function() {
@@ -39,11 +41,15 @@ const gameModule = (function (){
       }
     }
 
+    const updateDisplay = function() {
+      display.textContent = `${currentPlayer.char}\'s turn`;
+    }
+
     const toggleReset = function() {
       resetButton.classList.toggle('hidden');
     }
 
-    return {gameEnd, toggleReset};
+    return {gameEnd, toggleReset, updateDisplay};
   })();
 
   const board = (function() {
@@ -144,6 +150,7 @@ const gameModule = (function (){
       gameEnd(result);
     } else {
       rotatePlayers();
+      interfaceHandler.updateDisplay();
     }
   }
 
