@@ -3,7 +3,10 @@
   text-align: center;
 }
 
-h2, p {
+h2,
+p,
+button {
+  color: #555;
   margin: 0;
 }
 
@@ -19,6 +22,11 @@ a:visited {
   color: black;
 }
 
+button {
+  border: 0.1rem #ddd solid;
+  padding: 0.2rem 1rem;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -26,6 +34,7 @@ a:visited {
   height: 300px;
   width: 300px;
   padding: 0.1rem;
+  margin-bottom: 0.5rem;
   background: #ddd;
   border-radius: 2px;
 }
@@ -36,6 +45,14 @@ a:visited {
   align-items: center;
   background: #fff;
   border-radius: 2px;
+}
+
+.grid-item:hover {
+  background: #ffffff99;
+}
+
+.grid-item:active {
+  border: #ddd ridge 0.1rem;
 }
 
 .grid-item > p {
@@ -49,6 +66,7 @@ a:visited {
   align-items: center;
   gap: 1rem;
   margin-top: 3rem;
+  margin-bottom: 0.5rem;
   padding: 2rem;
   width: calc(100% - 6rem);
   background: rgb(255, 236, 223);
@@ -60,12 +78,16 @@ a:visited {
   gap: 1rem;
 }
 
-.display-container > div,
-.wins {
-  width: 100%;
+.display-container > div:first-child {
+  width: 70%;
+}
+
+.display-container > div:last-child {
+  width: 30%;
 }
 
 .wins {
+  box-sizing: border-box;
   border: 0.2rem solid #ddd;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
