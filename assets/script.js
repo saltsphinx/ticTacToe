@@ -6,6 +6,7 @@ const playerFactory = function(char, name) {
 const gameModule = (function (){
   const playerArray = [playerFactory('X'), playerFactory('O')]
   let turnIndex = 0;
+  let playerIndex = 0;
   let currentPlayer = playerArray[turnIndex];
   let winner;
   const gridItems = Array.from(document.querySelectorAll('.grid-item'));
@@ -22,13 +23,52 @@ const gameModule = (function (){
     interfaceHandler.updateDisplay();
   }
   
+  const rotatePlayers = function(index) {
+    console.log(index);
+    if (index != null) {
+      turnIndex = index;
+      currentPlayer = playerArray[turnIndex];
+    } else {
+      currentPlayer = playerArray[turnIndex = turnIndex == 0 ? 1 : 0];
+    }
+  }
+
   const interfaceHandler = (function() {
-    const resetButton = document.querySelector('.reset');
+    const mainSection = document.querySelector('.main-section');
+    const gameSection = document.querySelector('.game-section');
     const display = document.querySelector('.display');
+    const resetButton = document.querySelector('.reset');
     const xWinDisplay = document.querySelector('.x');
     const oWinDisplay = document.querySelector('.o');
+    const playerButton = document.querySelector('.player');
+    const computerButton = document.querySelector('.computer');
+    const selectXButton = document.querySelector('.select-x');
+    const selectOButton = document.querySelector('.select-o');
   
-    resetButton.addEventListener('click', resetGame)
+    resetButton.addEventListener('click', resetGame);
+
+    playerButton.addEventListener('click', () => {
+      rotatePlayers(playerIndex);
+      mainSection.classList.toggle('hidden')
+      gameSection.classList.toggle('hidden')
+      startGame();
+    })
+
+    selectXButton.addEventListener('click', () => {
+      playerIndex = 0;
+      if (selectXButton.classList.contains(".player-selected") != true) {
+        selectXButton.classList.add('player-selected');
+        selectOButton.classList.remove('player-selected');
+      }
+    });
+
+    selectOButton.addEventListener('click', () => {
+      playerIndex = 1;
+      if (!selectOButton.classList.contains(".player-selected" != true)) {
+        selectOButton.classList.add('player-selected');
+        selectXButton.classList.remove('player-selected');
+      }
+    });
 
     const gameEnd = function(result) {
       toggleReset();
@@ -133,10 +173,6 @@ const gameModule = (function (){
     });
   }
 
-  const rotatePlayers = function() {
-    currentPlayer = playerArray[turnIndex = turnIndex == 0 ? 1 : 0];
-  }
-
   const markItemEvent = function(e) {
     const char = currentPlayer.char;
     const item = e.target;
@@ -172,6 +208,3 @@ const gameModule = (function (){
 
   return {startGame, board, gridItems};
 })();
-
-const game = gameModule;
-game.startGame();

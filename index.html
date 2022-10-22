@@ -12,7 +12,21 @@
   <div class="container">
     <h2>Tic Tac Toe</h2>
     <div class="divider"></div>
-    <div class="game-section">
+    <div class="main-section">
+      <div class="player-selector">
+        Player
+        <div>
+          <button class="player-selected select-x">X</button>
+          <button class="select-o">O</button>
+        </div>
+      </div>
+      <div class="mode-selector">
+        <p>Mode</p>
+        <p class="select player">Player vs. Player</p>
+        <p class="select computer">Player vs. Computer</p>
+      </div>
+    </div>
+    <div class="game-section hidden">
       <div class="game-wrapper">
         <div class="grid">
           <div class="grid-item">
