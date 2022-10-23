@@ -205,6 +205,4 @@ const gameModule = (function (){
       item.removeEventListener('click', markItemEvent);
     });
   }
-
-  return {startGame, board, gridItems};
 })();
